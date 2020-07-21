@@ -259,7 +259,7 @@ $btn_CreateHD.Add_Click({
 
     #err_path
     if(!($txtb_DiskLocation.Text)){
-    [System.Windows.Forms.MessageBox]::Show("Select path", 'Attention', 'OK', 'Error')
+    [System.Windows.Forms.MessageBox]::Show("Please select path", 'Attention', 'OK', 'Error')
     Return
     }
 
@@ -282,7 +282,7 @@ $btn_CreateHD.Add_Click({
 
     if(!($size))
     {
-        [System.Windows.Forms.MessageBox]::Show("Give the size", 'Attention', 'OK', 'Error')
+        [System.Windows.Forms.MessageBox]::Show("Please give the size", 'Attention', 'OK', 'Error')
         Return
     }
     
@@ -290,7 +290,7 @@ $btn_CreateHD.Add_Click({
     #free_space
     if($size -gt $disk.'$_.FreeSpace/1GB')
     {
-        [System.Windows.Forms.MessageBox]::Show("No space", 'Attention', 'OK', 'Error')
+        [System.Windows.Forms.MessageBox]::Show("There is no enough space", 'Attention', 'OK', 'Error')
         Return
     }
     
@@ -300,7 +300,7 @@ $btn_CreateHD.Add_Click({
     elseif ($rdbtn_DyncamicallyExpanding.Checked){
         if(!($size))
     {
-        [System.Windows.Forms.MessageBox]::Show("Give the size", 'Attention', 'OK', 'Error')
+        [System.Windows.Forms.MessageBox]::Show("Please give the size", 'Attention', 'OK', 'Error')
         Return
     }
         
@@ -312,7 +312,7 @@ $btn_CreateHD.Add_Click({
 
     #err_parent
     if(!($txtb_ChooseDiskParent.Text)){
-        [System.Windows.Forms.MessageBox]::Show("Select parent", 'Attention', 'OK', 'Error')
+        [System.Windows.Forms.MessageBox]::Show("Please select parent disk", 'Attention', 'OK', 'Error')
         Return
     }
 
@@ -321,14 +321,14 @@ $btn_CreateHD.Add_Click({
 
     #err_parent_exist
     If (!(test-path $parent)){
-        [System.Windows.Forms.MessageBox]::Show("Wybrany dysk nie istnieje", 'Attention', 'OK', 'Information')
+        [System.Windows.Forms.MessageBox]::Show("There is no such disk", 'Attention', 'OK', 'Information')
         Return
         }
 
     New-VHD -ParentPath $parent -Path $path    
     }
 
-    [System.Windows.Forms.MessageBox]::Show("Virtual Hard Drive $diskname created", 'Attention', 'OK', 'Information')   
+    [System.Windows.Forms.MessageBox]::Show("Virtual Hard Drive $diskname has been created", 'Attention', 'OK', 'Information')   
 
 })
 
